@@ -6,6 +6,14 @@
 
 */
 
+/**
+ * \file matching.cpp
+ *
+ * \authors Mackenzie Kong-Sivert
+ *
+ * \brief Header for the model described in Akbarpour 2014
+ */
+
 #ifndef MATCHING_HPP_INCLUDED
 #define MATCHING_HPP_INCLUDED 1
 
@@ -22,42 +30,46 @@
  *
  * \details TODO
  *
- * \remarks
- *   TODO
+ * \remarks TODO
  */
-class agent {
+class Agent {
 public:
     /**
      * \brief Default constructor
      *
      * \note will not be used; only exists for compilation
      */
-    agent();
+    Agent();
     /**
      * \brief Parameterized constructor
      *
      * \note
      */
-    agent(uint64_t lifespan, float delta);
+    Agent(uint64_t lifespan, float delta);
 
     /**
-     * \brief Detructor
-     *
+     * \brief increments elapsed time
+     * 
+     * \return true if the agent has become critical and false otherwise
+     * 
      * \note
      */
-    ~agent();
+    bool time_step();
 
     /**
      * \brief utility function
      * 
+     * \return utility of the 
+     * 
      * \note = e^(delta*(elapsed_time))
      */
-    utility();
+    float utility();
 
 private:
     uint64_t lifespan_;
     float delta_;
     uint64_t elapsed_time_;
+    bool matched_;
 }
 
 /**
@@ -66,24 +78,16 @@ private:
  *
  * \details TODO
  *
- * \remarks
- *   TODO
+ * \remarks TODO
  */
-class market {
+class Market {
 public:
     /**
      * \brief Default constructor
      *
      * \note will not be used; only exists for compilation
      */
-    market();
-
-    /**
-     * \brief Destructor
-     * 
-     * \note
-     */
-    ~market();
+    Market();
 
     /**
      * \brief Parameterized constructor
@@ -92,7 +96,7 @@ public:
      * 
      * \note
      */
-    market(uint64_t lambda, uint64_t m, uint64_t d);
+    Market(uint64_t lambda, uint64_t m, uint64_t d);
 
     /**
      * \brief Adds an agent to the model
@@ -101,7 +105,7 @@ public:
      * 
      * \note
      */
-    void add_agent(agent* a);
+    void add_agent(Agent* a);
 
     /**
      * \brief Removes an agent from the model
@@ -110,7 +114,7 @@ public:
      * 
      * \note
      */
-    void remove_agent(agent* a);
+    void remove_agent(Agent* a);
 
     /**
      * \brief Models one time step in the model
@@ -127,7 +131,7 @@ private:
     uint64_t d_;
     float utility_total_;
     // a graph representing compatable agents represented by an adjacency list
-    std::list<std::list<agent*>> compat_graph_;
+    std::list<std::list<Agent*>> compat_graph_;
 }
 
 #endif // MATCHING_HPP_INCLUDED
