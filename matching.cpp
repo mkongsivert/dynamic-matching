@@ -45,7 +45,7 @@ bool Agent::time_step()
 
 float Agent::utility()
 {
-    return (matched_ ? exp(-1*delta_*elapsed_time_) : 0)
+    return (matched_ ? exp(-1*delta_*elapsed_time_) : 0);
 }
 
 Market::Market() :
@@ -71,7 +71,7 @@ void Market::add_agent(Agent* a)
     std::list<Agent*> new_node {a};
     for (auto itr = compat_graph_.begin(); itr != compat_graph_.end(); ++itr)
     {
-        if (rand()%m < d) // probability of compatibility = d/m
+        if (rand()%m_ < d_) // probability of compatibility = d/m
         {
             new_node.push_back(itr->front()); // add connection
             itr->push_back(a);
@@ -92,9 +92,9 @@ void Market::remove_agent(Agent* a)
             break;
         }
     }
-    if a_itr != compat_graph_.end()
+    if (a_itr != compat_graph_.end())
     {
-        compat_graph_.remove(a_itr);
+        compat_graph_.erase(a_itr);
     }
     else
     {
@@ -104,7 +104,7 @@ void Market::remove_agent(Agent* a)
     // find and remove a from all remaining rows
     for (auto itr1 = compat_graph_.begin(); itr1 != compat_graph_.end(); ++itr1)
     {
-        auto a_itr = itr->end();
+        auto a_itr = itr1->end();
         for (auto itr2 = itr1->begin(); itr2 != itr1->end(); ++itr2)
         {
             if (*itr2 == a)
@@ -113,23 +113,29 @@ void Market::remove_agent(Agent* a)
                 break;
             }
         }
-        if (a_itr != itr->end())
+        if (a_itr != itr1->end())
         {
-            itr1->remove(a_itr);
+            itr1->erase(a_itr);
         }
     }
 }
 
 float Market::time_step()
 {
+    float utility_increase = 0;
     for (auto itr = compat_graph_.begin(); itr != compat_graph_.end(); ++itr)
     {
         Agent* a = itr->front();
         if (a->time_step())
         {
-            utility_total_ += a->utility();
-            remove_agent(a);
+            remove_agent(a); // remove critical agents
         }
     }
     //TODO: add a matching function
+    return utility_increase;
+}
+
+int main()
+{
+    return 0;
 }

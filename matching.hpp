@@ -70,7 +70,7 @@ private:
     float delta_;
     uint64_t elapsed_time_;
     bool matched_;
-}
+};
 
 /**
  * \class Market
@@ -132,6 +132,6 @@ private:
     float utility_total_;
     // a graph representing compatable agents represented by an adjacency list
     std::list<std::list<Agent*>> compat_graph_;
-}
+};
 
 #endif // MATCHING_HPP_INCLUDED
