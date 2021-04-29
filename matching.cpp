@@ -18,6 +18,8 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <chrono>
+#include <random>
 
 Agent::Agent() :
     lifespan_{0},
@@ -49,21 +51,24 @@ float Agent::utility()
 }
 
 Market::Market() :
-    lambda_{0},
     m_{0},
     d_{0},
+    delta_{0},
     utility_total_{0}
 {
     // Nothing left to do
 }
 
-Market::Market(uint64_t lambda, uint64_t m, uint64_t d) :
-    lambda_{lambda},
+Market::Market(uint64_t lambda, uint64_t m, uint64_t d, uint64_t delta) :
     m_{m},
     d_{d},
+    delta_{delta},
     utility_total_{0}
 {
-    compat_graph_;
+    lifespan_dist_ = std::poisson_distribution<int>(lambda);
+    new_agent_dist_ = std::poisson_distribution<int>(m);
+    uint64_t seed = std::chrono::system_clock::now().time_since_epoch().count();
+    generator_ = std::default_random_engine(seed);
 }
 
 void Market::add_agent(Agent* a)
@@ -132,6 +137,18 @@ float Market::time_step()
         }
     }
     //TODO: add a matching function
+
+    // get the number of agents to add from the poisson distribution
+    uint64_t seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine generator (seed);
+    uint64_t new_agents = new_agent_dist_(generator_);
+    for (uint64_t i = 0; i < new_agents; ++i)
+    {
+        uint64_t lifespan = lifespan_dist_(generator_);
+        Agent new_a(lifespan, delta_);
+        add_agent(&new_a);
+    }
+
     return utility_increase;
 }
 

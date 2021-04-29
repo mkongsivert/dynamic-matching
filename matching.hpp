@@ -23,6 +23,7 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <random>
 
 /**
  * \class Agent
@@ -96,7 +97,7 @@ public:
      * 
      * \note
      */
-    Market(uint64_t lambda, uint64_t m, uint64_t d);
+    Market(uint64_t lambda, uint64_t m, uint64_t d, uint64_t delta);
 
     /**
      * \brief Adds an agent to the model
@@ -126,10 +127,13 @@ public:
     float time_step();
 
 private:
-    uint64_t lambda_; // parameter in random function for agent lifespans
     uint64_t m_;
     uint64_t d_;
+    uint64_t delta_;
     float utility_total_;
+    std::poisson_distribution<int> lifespan_dist_;
+    std::poisson_distribution<int> new_agent_dist_;
+    std::default_random_engine generator_;
     // a graph representing compatable agents represented by an adjacency list
     std::list<std::list<Agent*>> compat_graph_;
 };
