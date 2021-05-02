@@ -154,5 +154,17 @@ float Market::time_step()
 
 int main()
 {
+    // Constants
+    uint64_t T = 10;
+    uint64_t lambda = 1;
+    uint64_t m = 1;
+    uint64_t d = 1;
+    uint64_t delta = 5;
+
+    Market market(lambda, m, d, delta);
+    for (uint64_t i = 0; i < T; ++i)
+    {
+        std::cout << market.time_step() << std::endl;
+    }
     return 0;
 }
