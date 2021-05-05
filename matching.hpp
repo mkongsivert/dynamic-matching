@@ -1,12 +1,4 @@
 /**
- * -  For t >= 0, let At be the set of the agents in our market at time t, and let Zt := |At|. We refer to At as the pool of the market
- * - assume A_0 = \varnothing
- * - runs in interval [0,T]
- * - Agents arrive at the market at rate m according to a Poisson process, i.e., in any interval [t, t + 1], m new agents enter the market in expectation. Throughout the paper we assume m >= 1
-
-*/
-
-/**
  * \file matching.cpp
  *
  * \authors Mackenzie Kong-Sivert
@@ -92,12 +84,28 @@ public:
 
     /**
      * \brief Parameterized constructor
-     *
-     * \param m "Agents arrive at the market at rate m according to a Poisson process, i.e., in any interval [t, t + 1], m new agents enter the market in expectation"
+     * 
+     * \param lambda the expected lifespan of each agent
+     * \param m the (expected) rate at which new agents enter the market
+     * \param d probability of compatability for agents
+     * \param delta the loss constant for all agents in the market
+     * \param greedy true for a market with a greedy strategy, false for one with a patient strategy
      * 
      * \note
      */
-    Market(uint64_t lambda, uint64_t m, uint64_t d, uint64_t delta);
+    Market(uint64_t lambda, uint64_t m, uint64_t d, uint64_t delta, bool greedy);
+
+    /**
+     * \brief Changes the greedy_ value for the market
+     * 
+     * \param strategy specifies the value of greedy_ going forward. The
+     * strategy will be greedy if the value is "greedy", patient if the value
+     * is "patient", and whatever the opposite of the current value is
+     * otherwise.
+     * 
+     * \note
+     */
+    void change_strategy(std::string strategy);
 
     /**
      * \brief Adds an agent to the model
@@ -118,6 +126,16 @@ public:
     void remove_agent(Agent* a);
 
     /**
+     * \brief matches the agent if possible
+     * 
+     * \param a the agent to be matched
+     * 
+     * \return true if the agent is successfully matched, false otherwise
+     * 
+     */
+    bool try_match(Agent* a);
+
+    /**
      * \brief Models one time step in the model
      * 
      * \return increase in total utility
@@ -130,6 +148,7 @@ private:
     uint64_t m_;
     uint64_t d_;
     uint64_t delta_;
+    bool greedy_;
     float utility_total_;
     std::poisson_distribution<int> lifespan_dist_;
     std::poisson_distribution<int> new_agent_dist_;
