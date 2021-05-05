@@ -1,0 +1,117 @@
+\hypertarget{classAgent}{}\doxysection{Agent Class Reference}
+\label{classAgent}\index{Agent@{Agent}}
+
+
+Represents an agent in our market.  
+
+
+
+
+{\ttfamily \#include $<$matching.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAgent_a24a60f1d260bf19a4f7f8a5f36881d3f}{Agent}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAgent_a7e8a0f8ebc73bf2504e881bb9535dd90}{Agent}} (uint64\+\_\+t lifespan, float delta)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classAgent_a24a9b85d7b95bf22df0b918f8b85c43f}{time\+\_\+step}} ()
+\begin{DoxyCompactList}\small\item\em increments elapsed time \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classAgent_a09fa685ffa9655cbbf4ee369ce115743}{utility}} ()
+\begin{DoxyCompactList}\small\item\em utility function \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAgent_a46e79effbfb02a26bba5c90c1ee453ee}{match}} ()
+\begin{DoxyCompactList}\small\item\em marks an agent as matched \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an agent in our market. 
+
+T\+O\+DO
+
+\begin{DoxyRemark}{Remarks}
+T\+O\+DO 
+\end{DoxyRemark}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAgent_a24a60f1d260bf19a4f7f8a5f36881d3f}\label{classAgent_a24a60f1d260bf19a4f7f8a5f36881d3f}} 
+\index{Agent@{Agent}!Agent@{Agent}}
+\index{Agent@{Agent}!Agent@{Agent}}
+\doxysubsubsection{\texorpdfstring{Agent()}{Agent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Agent\+::\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+\begin{DoxyNote}{Note}
+will not be used; only exists for compilation 
+\end{DoxyNote}
+\mbox{\Hypertarget{classAgent_a7e8a0f8ebc73bf2504e881bb9535dd90}\label{classAgent_a7e8a0f8ebc73bf2504e881bb9535dd90}} 
+\index{Agent@{Agent}!Agent@{Agent}}
+\index{Agent@{Agent}!Agent@{Agent}}
+\doxysubsubsection{\texorpdfstring{Agent()}{Agent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Agent\+::\+Agent (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{lifespan,  }\item[{float}]{delta }\end{DoxyParamCaption})}
+
+
+
+Parameterized constructor. 
+
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAgent_a46e79effbfb02a26bba5c90c1ee453ee}\label{classAgent_a46e79effbfb02a26bba5c90c1ee453ee}} 
+\index{Agent@{Agent}!match@{match}}
+\index{match@{match}!Agent@{Agent}}
+\doxysubsubsection{\texorpdfstring{match()}{match()}}
+{\footnotesize\ttfamily void Agent\+::match (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+marks an agent as matched 
+
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+\mbox{\Hypertarget{classAgent_a24a9b85d7b95bf22df0b918f8b85c43f}\label{classAgent_a24a9b85d7b95bf22df0b918f8b85c43f}} 
+\index{Agent@{Agent}!time\_step@{time\_step}}
+\index{time\_step@{time\_step}!Agent@{Agent}}
+\doxysubsubsection{\texorpdfstring{time\_step()}{time\_step()}}
+{\footnotesize\ttfamily bool Agent\+::time\+\_\+step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+increments elapsed time 
+
+\begin{DoxyReturn}{Returns}
+true if the agent has become critical and false otherwise
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+\mbox{\Hypertarget{classAgent_a09fa685ffa9655cbbf4ee369ce115743}\label{classAgent_a09fa685ffa9655cbbf4ee369ce115743}} 
+\index{Agent@{Agent}!utility@{utility}}
+\index{utility@{utility}!Agent@{Agent}}
+\doxysubsubsection{\texorpdfstring{utility()}{utility()}}
+{\footnotesize\ttfamily float Agent\+::utility (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+utility function 
+
+\begin{DoxyReturn}{Returns}
+utility of the
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+= e$^\wedge$(delta$\ast$(elapsed\+\_\+time)) 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+matching.\+hpp\item 
+\mbox{\hyperlink{matching_8cpp}{matching.\+cpp}}\end{DoxyCompactItemize}

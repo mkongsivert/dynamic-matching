@@ -1,0 +1,192 @@
+\hypertarget{classMarket}{}\doxysection{Market Class Reference}
+\label{classMarket}\index{Market@{Market}}
+
+
+Represents a matching market.  
+
+
+
+
+{\ttfamily \#include $<$matching.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMarket_aceddb4e7d1f53bc1e3a4f10b2254437f}{Market}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMarket_af7a70c9149c8c1bcc9ce8b1668dad282}{Market}} (uint64\+\_\+t lambda, uint64\+\_\+t m, uint64\+\_\+t d, uint64\+\_\+t delta, bool greedy)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMarket_a53ffa200f93dbd364209ebc804dd15e9}{change\+\_\+strategy}} (std\+::string strategy)
+\begin{DoxyCompactList}\small\item\em Changes the greedy\+\_\+ value for the market. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classMarket_a2cbf255375a482629dceea664a6e4892}{utility}} ()
+\begin{DoxyCompactList}\small\item\em a getter for the total utility value \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMarket_a48c4632ced0e619849cb8b37fe1a09d8}{add\+\_\+agent}} (\mbox{\hyperlink{classAgent}{Agent}} $\ast$a)
+\begin{DoxyCompactList}\small\item\em Adds an agent to the model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMarket_a860a2329f9bbcc9cde69f8fd374a59f1}{remove\+\_\+agent}} (\mbox{\hyperlink{classAgent}{Agent}} $\ast$a)
+\begin{DoxyCompactList}\small\item\em Removes an agent from the model. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMarket_a916eb8e1bf328a6ac0cd2fdd31fbd2c0}{try\+\_\+match}} (\mbox{\hyperlink{classAgent}{Agent}} $\ast$a)
+\begin{DoxyCompactList}\small\item\em matches the agent if possible \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMarket_ae77b9ef7026383ae1452165e3df3d7af}{time\+\_\+step}} ()
+\begin{DoxyCompactList}\small\item\em Models one time step in the model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a matching market. 
+
+T\+O\+DO
+
+\begin{DoxyRemark}{Remarks}
+T\+O\+DO 
+\end{DoxyRemark}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMarket_aceddb4e7d1f53bc1e3a4f10b2254437f}\label{classMarket_aceddb4e7d1f53bc1e3a4f10b2254437f}} 
+\index{Market@{Market}!Market@{Market}}
+\index{Market@{Market}!Market@{Market}}
+\doxysubsubsection{\texorpdfstring{Market()}{Market()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Market\+::\+Market (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+\begin{DoxyNote}{Note}
+will not be used; only exists for compilation 
+\end{DoxyNote}
+\mbox{\Hypertarget{classMarket_af7a70c9149c8c1bcc9ce8b1668dad282}\label{classMarket_af7a70c9149c8c1bcc9ce8b1668dad282}} 
+\index{Market@{Market}!Market@{Market}}
+\index{Market@{Market}!Market@{Market}}
+\doxysubsubsection{\texorpdfstring{Market()}{Market()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Market\+::\+Market (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{lambda,  }\item[{uint64\+\_\+t}]{m,  }\item[{uint64\+\_\+t}]{d,  }\item[{uint64\+\_\+t}]{delta,  }\item[{bool}]{greedy }\end{DoxyParamCaption})}
+
+
+
+Parameterized constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lambda} & the expected lifespan of each agent \\
+\hline
+{\em m} & the (expected) rate at which new agents enter the market \\
+\hline
+{\em d} & probability of compatability for agents \\
+\hline
+{\em delta} & the loss constant for all agents in the market \\
+\hline
+{\em greedy} & true for a market with a greedy strategy, false for one with a patient strategy\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMarket_a48c4632ced0e619849cb8b37fe1a09d8}\label{classMarket_a48c4632ced0e619849cb8b37fe1a09d8}} 
+\index{Market@{Market}!add\_agent@{add\_agent}}
+\index{add\_agent@{add\_agent}!Market@{Market}}
+\doxysubsubsection{\texorpdfstring{add\_agent()}{add\_agent()}}
+{\footnotesize\ttfamily void Market\+::add\+\_\+agent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAgent}{Agent}} $\ast$}]{a }\end{DoxyParamCaption})}
+
+
+
+Adds an agent to the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & pointer to an agent to add\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+\mbox{\Hypertarget{classMarket_a53ffa200f93dbd364209ebc804dd15e9}\label{classMarket_a53ffa200f93dbd364209ebc804dd15e9}} 
+\index{Market@{Market}!change\_strategy@{change\_strategy}}
+\index{change\_strategy@{change\_strategy}!Market@{Market}}
+\doxysubsubsection{\texorpdfstring{change\_strategy()}{change\_strategy()}}
+{\footnotesize\ttfamily void Market\+::change\+\_\+strategy (\begin{DoxyParamCaption}\item[{std\+::string}]{strategy }\end{DoxyParamCaption})}
+
+
+
+Changes the greedy\+\_\+ value for the market. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strategy} & specifies the value of greedy\+\_\+ going forward. The strategy will be greedy if the value is \char`\"{}greedy\char`\"{}, patient if the value is \char`\"{}patient\char`\"{}, and whatever the opposite of the current value is otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+\mbox{\Hypertarget{classMarket_a860a2329f9bbcc9cde69f8fd374a59f1}\label{classMarket_a860a2329f9bbcc9cde69f8fd374a59f1}} 
+\index{Market@{Market}!remove\_agent@{remove\_agent}}
+\index{remove\_agent@{remove\_agent}!Market@{Market}}
+\doxysubsubsection{\texorpdfstring{remove\_agent()}{remove\_agent()}}
+{\footnotesize\ttfamily void Market\+::remove\+\_\+agent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAgent}{Agent}} $\ast$}]{a }\end{DoxyParamCaption})}
+
+
+
+Removes an agent from the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & pointer to an agent to remove\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+\mbox{\Hypertarget{classMarket_ae77b9ef7026383ae1452165e3df3d7af}\label{classMarket_ae77b9ef7026383ae1452165e3df3d7af}} 
+\index{Market@{Market}!time\_step@{time\_step}}
+\index{time\_step@{time\_step}!Market@{Market}}
+\doxysubsubsection{\texorpdfstring{time\_step()}{time\_step()}}
+{\footnotesize\ttfamily void Market\+::time\+\_\+step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Models one time step in the model. 
+
+\begin{DoxyReturn}{Returns}
+increase in total utility
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+\mbox{\Hypertarget{classMarket_a916eb8e1bf328a6ac0cd2fdd31fbd2c0}\label{classMarket_a916eb8e1bf328a6ac0cd2fdd31fbd2c0}} 
+\index{Market@{Market}!try\_match@{try\_match}}
+\index{try\_match@{try\_match}!Market@{Market}}
+\doxysubsubsection{\texorpdfstring{try\_match()}{try\_match()}}
+{\footnotesize\ttfamily bool Market\+::try\+\_\+match (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAgent}{Agent}} $\ast$}]{a }\end{DoxyParamCaption})}
+
+
+
+matches the agent if possible 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the agent to be matched\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the agent is successfully matched, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMarket_a2cbf255375a482629dceea664a6e4892}\label{classMarket_a2cbf255375a482629dceea664a6e4892}} 
+\index{Market@{Market}!utility@{utility}}
+\index{utility@{utility}!Market@{Market}}
+\doxysubsubsection{\texorpdfstring{utility()}{utility()}}
+{\footnotesize\ttfamily float Market\+::utility (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+a getter for the total utility value 
+
+\begin{DoxyReturn}{Returns}
+the total utility for the market 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+matching.\+hpp\item 
+\mbox{\hyperlink{matching_8cpp}{matching.\+cpp}}\end{DoxyCompactItemize}

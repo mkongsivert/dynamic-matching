@@ -1,0 +1,37 @@
+\hypertarget{matching_8cpp}{}\doxysection{matching.\+cpp File Reference}
+\label{matching_8cpp}\index{matching.cpp@{matching.cpp}}
+
+
+Implementation of the model described in Akbarpour 2014.  
+
+
+{\ttfamily \#include \char`\"{}matching.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+Include dependency graph for matching.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{matching_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{matching_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+int {\bfseries main} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the model described in Akbarpour 2014. 
+
+Header for the model described in Akbarpour 2014.
+
+\begin{DoxyAuthor}{Authors}
+Mackenzie Kong-\/\+Sivert 
+\end{DoxyAuthor}
