@@ -68,7 +68,7 @@ Market::Market(uint64_t lambda, uint64_t m, uint64_t d, uint64_t delta, bool gre
 {
     lifespan_dist_ = std::poisson_distribution<int>(lambda);
     new_agent_dist_ = std::poisson_distribution<int>(m);
-    uint64_t seed = std::chrono::system_clock::now().time_since_epoch().count();
+    uint64_t seed = 5; //std::chrono::system_clock::now().time_since_epoch().count();
     generator_ = std::default_random_engine(seed);
 }
 
@@ -86,6 +86,11 @@ void Market::change_strategy(std::string strategy)
     {
         greedy_ = !greedy_;
     }
+}
+
+float Market::utility()
+{
+    return utility_total_;
 }
 
 void Market::add_agent(Agent* a)
@@ -150,9 +155,11 @@ bool Market::try_match(Agent* a)
         {
             if (itr->size() > 1) // if there are any compatible agents, match one
             {
-                auto b = itr->back();
+                auto b_itr = ++itr->begin();
+                Agent* b = *b_itr;
                 utility_total_ += a->utility();
                 utility_total_ += b->utility();
+                std::cout << "added " << a->utility() << " and " << b->utility() << std::endl;
                 remove_agent(a);
                 remove_agent(b);
                 return true;
@@ -168,9 +175,9 @@ bool Market::try_match(Agent* a)
     return false;
 }
 
-float Market::time_step()
+void Market::time_step()
 {
-    float utility_increase = 0;
+    std::list<Agent*> to_remove;
     for (auto itr = compat_graph_.begin(); itr != compat_graph_.end(); ++itr)
     {
         Agent* a = itr->front();
@@ -178,17 +185,23 @@ float Market::time_step()
         {
             if (greedy_)
             {
-                remove_agent(a); // remove critical agents
+                to_remove.push_back(a); // mark critical agents
             }
             else // under a patient strategy, try to match the agent at the end
             {
                 bool matched = try_match(a);
                 if (!matched)
                 {
-                    remove_agent(a);
+                    to_remove.push_back(a); // mark unmatched critical agents
                 }
             }
         }
+    }
+
+    // erase all critical agents
+    for (auto itr = to_remove.begin(); itr != to_remove.end(); ++itr)
+    {
+        remove_agent(*itr);
     }
 
     // get the number of agents to add from the poisson distribution
@@ -198,15 +211,13 @@ float Market::time_step()
     for (uint64_t i = 0; i < new_agents; ++i)
     {
         uint64_t lifespan = lifespan_dist_(generator_);
-        Agent new_a(lifespan, delta_);
-        add_agent(&new_a);
+        Agent* new_a = new Agent(lifespan, delta_);
+        add_agent(new_a);
         if (greedy_)
         {
-            try_match(&new_a);
+            try_match(new_a);
         }
     }
-
-    return utility_increase;
 }
 
 int main()
@@ -222,7 +233,8 @@ int main()
     Market market(lambda, m, d, delta, greedy);
     for (uint64_t i = 0; i < T; ++i)
     {
-        std::cout << market.time_step() << std::endl;
+        market.time_step();
+        std::cout << "Total utility: " << market.utility() << std::endl;
     }
     return 0;
 }

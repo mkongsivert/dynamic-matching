@@ -58,6 +58,13 @@ public:
      */
     float utility();
 
+    /**
+     * \brief marks an agent as matched
+     * 
+     * \note
+     */
+    void match();
+
 private:
     uint64_t lifespan_;
     float delta_;
@@ -108,6 +115,13 @@ public:
     void change_strategy(std::string strategy);
 
     /**
+     * \brief a getter for the total utility value
+     * 
+     * \return the total utility for the market
+     */
+    float utility();
+
+    /**
      * \brief Adds an agent to the model
      * 
      * \param a pointer to an agent to add
@@ -142,7 +156,7 @@ public:
      * 
      * \note
      */
-    float time_step();
+    void time_step();
 
 private:
     uint64_t m_;
