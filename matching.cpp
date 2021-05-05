@@ -73,7 +73,7 @@ Market::Market(uint64_t lambda, uint64_t m, uint64_t d, uint64_t delta, bool gre
 {
     lifespan_dist_ = std::poisson_distribution<int>(lambda);
     new_agent_dist_ = std::poisson_distribution<int>(m);
-    uint64_t seed = 5; //std::chrono::system_clock::now().time_since_epoch().count();
+    uint64_t seed = std::chrono::system_clock::now().time_since_epoch().count();
     generator_ = std::default_random_engine(seed);
 }
 
