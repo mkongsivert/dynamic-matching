@@ -50,6 +50,11 @@ float Agent::utility()
     return (matched_ ? exp(-1*delta_*elapsed_time_) : 0);
 }
 
+void Agent::match()
+{
+    matched_ = true;
+}
+
 Market::Market() :
     m_{0},
     d_{0},
@@ -157,9 +162,10 @@ bool Market::try_match(Agent* a)
             {
                 auto b_itr = ++itr->begin();
                 Agent* b = *b_itr;
+                a->match();
                 utility_total_ += a->utility();
+                b->match();
                 utility_total_ += b->utility();
-                std::cout << "added " << a->utility() << " and " << b->utility() << std::endl;
                 remove_agent(a);
                 remove_agent(b);
                 return true;
