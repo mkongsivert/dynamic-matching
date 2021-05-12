@@ -11,8 +11,8 @@ class Agent:
         self._matched = False
 
     def time_step(self):
-        _elapsed_time +=1
-        return (_elapsed_time == _lifespan)
+        self._elapsed_time +=1
+        return (self._elapsed_time == self._lifespan)
 
     def utility(self):
         return numpy.exp(-1*self._delta*self._elapsed_time) if self._matched else 0
@@ -28,7 +28,7 @@ class Market:
         self._lambda = lamb
         self._greedy = greedy
         self._utility_total = 0
-        self._compat_graph = [[]]
+        self._compat_graph = []
 
     def change_strategy(self, strategy):
         if (strategy == "greedy"):
@@ -48,7 +48,7 @@ class Market:
             if (random.randint(0,self._m) < self._d):
                 new_node += [node[0]] # add connection
                 node += [a]
-        compat_graph_+=[new_node]
+        self._compat_graph+=[new_node]
 
     def remove_agent(self, a):
         # find and remove the row for a
@@ -91,7 +91,7 @@ class Market:
         for node in self._compat_graph:
             a = node[0]
             if (a.time_step()):
-                if (greedy_):
+                if (self._greedy):
                     to_remove+=[a] # mark critical agents
                 else: # under a patient strategy, try to match the agent at the end
                     matched = self.try_match(a)
