@@ -36,7 +36,9 @@ public:
     /**
      * \brief Parameterized constructor
      *
-     * \note
+     * \param lifespan the lifespan of the agent
+     * 
+     * \param delta the parameter for the loss function of the agent's utility
      */
     Agent(uint64_t lifespan, float delta);
 
@@ -44,8 +46,6 @@ public:
      * \brief increments elapsed time
      * 
      * \return true if the agent has become critical and false otherwise
-     * 
-     * \note
      */
     bool time_step();
 
@@ -54,14 +54,12 @@ public:
      * 
      * \return utility of the agent
      * 
-     * \note = e^(delta*(elapsed_time)) if the agent is matched, 0 otherwise
+     * \note = e^(-delta*(elapsed_time)) if the agent is matched, 0 otherwise
      */
     float utility();
 
     /**
      * \brief marks an agent as matched
-     * 
-     * \note
      */
     void match();
 
@@ -76,7 +74,9 @@ private:
  * \class Market
  * \brief Represents a matching market
  *
- * \details TODO
+ * \details This class models a market as a graph (implemented as an adjacency
+ * list) of agents. At each time step, it adds m agents in expectation, tries
+ * to match existing agents, and removes all unmatched critical agents.
  *
  * \remarks TODO
  */
@@ -97,8 +97,6 @@ public:
      * \param d probability of compatability for agents
      * \param delta the loss constant for all agents in the market
      * \param greedy true for a market with a greedy strategy, false for one with a patient strategy
-     * 
-     * \note
      */
     Market(uint64_t lambda, uint64_t m, uint64_t d, uint64_t delta, bool greedy);
 
@@ -109,8 +107,6 @@ public:
      * strategy will be greedy if the value is "greedy", patient if the value
      * is "patient", and whatever the opposite of the current value is
      * otherwise.
-     * 
-     * \note
      */
     void change_strategy(std::string strategy);
 
@@ -134,8 +130,6 @@ public:
      * \brief Removes an agent from the model
      * 
      * \param a pointer to an agent to remove
-     * 
-     * \note
      */
     void remove_agent(Agent* a);
 
@@ -151,8 +145,6 @@ public:
 
     /**
      * \brief Models one time step in the model
-     * 
-     * \note
      */
     void time_step();
 

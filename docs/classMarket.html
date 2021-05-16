@@ -97,13 +97,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a916eb8e1bf328a6ac0cd2fdd31fbd2c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMarket.html#a916eb8e1bf328a6ac0cd2fdd31fbd2c0">try_match</a> (<a class="el" href="classAgent.html">Agent</a> *a)</td></tr>
 <tr class="memdesc:a916eb8e1bf328a6ac0cd2fdd31fbd2c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">matches the agent if possible  <a href="classMarket.html#a916eb8e1bf328a6ac0cd2fdd31fbd2c0">More...</a><br /></td></tr>
 <tr class="separator:a916eb8e1bf328a6ac0cd2fdd31fbd2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae77b9ef7026383ae1452165e3df3d7af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMarket.html#ae77b9ef7026383ae1452165e3df3d7af">time_step</a> ()</td></tr>
-<tr class="memdesc:ae77b9ef7026383ae1452165e3df3d7af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Models one time step in the model.  <a href="classMarket.html#ae77b9ef7026383ae1452165e3df3d7af">More...</a><br /></td></tr>
+<tr class="memitem:ae77b9ef7026383ae1452165e3df3d7af"><td class="memItemLeft" align="right" valign="top"><a id="ae77b9ef7026383ae1452165e3df3d7af"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMarket.html#ae77b9ef7026383ae1452165e3df3d7af">time_step</a> ()</td></tr>
+<tr class="memdesc:ae77b9ef7026383ae1452165e3df3d7af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Models one time step in the model. <br /></td></tr>
 <tr class="separator:ae77b9ef7026383ae1452165e3df3d7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a matching market. </p>
-<p>TODO</p>
+<p>This class models a market as a graph (implemented as an adjacency list) of agents. At each time step, it adds m agents in expectation, tries to match existing agents, and removes all unmatched critical agents.</p>
 <dl class="section remark"><dt>Remarks</dt><dd>TODO </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aceddb4e7d1f53bc1e3a4f10b2254437f"></a>
@@ -177,11 +178,10 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">m</td><td>the (expected) rate at which new agents enter the market </td></tr>
     <tr><td class="paramname">d</td><td>probability of compatability for agents </td></tr>
     <tr><td class="paramname">delta</td><td>the loss constant for all agents in the market </td></tr>
-    <tr><td class="paramname">greedy</td><td>true for a market with a greedy strategy, false for one with a patient strategy</td></tr>
+    <tr><td class="paramname">greedy</td><td>true for a market with a greedy strategy, false for one with a patient strategy </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -232,11 +232,10 @@ Public Member Functions</h2></td></tr>
 <p>Changes the greedy_ value for the market. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">strategy</td><td>specifies the value of greedy_ going forward. The strategy will be greedy if the value is "greedy", patient if the value is "patient", and whatever the opposite of the current value is otherwise.</td></tr>
+    <tr><td class="paramname">strategy</td><td>specifies the value of greedy_ going forward. The strategy will be greedy if the value is "greedy", patient if the value is "patient", and whatever the opposite of the current value is otherwise. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -259,32 +258,10 @@ Public Member Functions</h2></td></tr>
 <p>Removes an agent from the model. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>pointer to an agent to remove</td></tr>
+    <tr><td class="paramname">a</td><td>pointer to an agent to remove </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd></dd></dl>
-
-</div>
-</div>
-<a id="ae77b9ef7026383ae1452165e3df3d7af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae77b9ef7026383ae1452165e3df3d7af">&#9670;&nbsp;</a></span>time_step()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Market::time_step </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Models one time step in the model. </p>
-<dl class="section return"><dt>Returns</dt><dd>increase in total utility</dd></dl>
-<dl class="section note"><dt>Note</dt><dd></dd></dl>
 
 </div>
 </div>
