@@ -87,6 +87,15 @@ class Market:
         return False
 
     def time_step(self):
+        # get the number of agents to add from the poisson distribution
+        new_agents = numpy.random.poisson(self._m, 1)[0]
+        for i in range(new_agents):
+            lifespan = numpy.random.poisson(self._lambda, 1)[0]
+            new_a = Agent(lifespan, self._delta)
+            self.add_agent(new_a)
+            if (self._greedy):
+                self.try_match(new_a)
+
         to_remove = []
         for node in self._compat_graph:
             a = node[0]
@@ -101,15 +110,6 @@ class Market:
         # erase all critical agents
         for a in to_remove:
             self.remove_agent(a)
-
-        # get the number of agents to add from the poisson distribution
-        new_agents = numpy.random.poisson(self._m, 1)[0]
-        for i in range(new_agents):
-            lifespan = numpy.random.poisson(self._lambda, 1)[0]
-            new_a = Agent(lifespan, self._delta)
-            self.add_agent(new_a)
-            if (self._greedy):
-                self.try_match(new_a)
 
 def main():
     T = 20

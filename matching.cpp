@@ -183,6 +183,21 @@ bool Market::try_match(Agent* a)
 
 void Market::time_step()
 {
+    // get the number of agents to add from the poisson distribution
+    uint64_t seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine generator (seed);
+    uint64_t new_agents = new_agent_dist_(generator_);
+    for (uint64_t i = 0; i < new_agents; ++i)
+    {
+        uint64_t lifespan = lifespan_dist_(generator_);
+        Agent* new_a = new Agent(lifespan, delta_);
+        add_agent(new_a);
+        if (greedy_)
+        {
+            try_match(new_a);
+        }
+    }
+
     std::list<Agent*> to_remove;
     for (auto itr = compat_graph_.begin(); itr != compat_graph_.end(); ++itr)
     {
@@ -208,21 +223,6 @@ void Market::time_step()
     for (auto itr = to_remove.begin(); itr != to_remove.end(); ++itr)
     {
         remove_agent(*itr);
-    }
-
-    // get the number of agents to add from the poisson distribution
-    uint64_t seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::default_random_engine generator (seed);
-    uint64_t new_agents = new_agent_dist_(generator_);
-    for (uint64_t i = 0; i < new_agents; ++i)
-    {
-        uint64_t lifespan = lifespan_dist_(generator_);
-        Agent* new_a = new Agent(lifespan, delta_);
-        add_agent(new_a);
-        if (greedy_)
-        {
-            try_match(new_a);
-        }
     }
 }
 
