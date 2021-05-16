@@ -52,9 +52,9 @@ public:
     /**
      * \brief utility function
      * 
-     * \return utility of the 
+     * \return utility of the agent
      * 
-     * \note = e^(delta*(elapsed_time))
+     * \note = e^(delta*(elapsed_time)) if the agent is matched, 0 otherwise
      */
     float utility();
 
@@ -151,8 +151,6 @@ public:
 
     /**
      * \brief Models one time step in the model
-     * 
-     * \return increase in total utility
      * 
      * \note
      */
